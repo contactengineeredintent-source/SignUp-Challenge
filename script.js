@@ -6,10 +6,21 @@ function checkEmail(value) {
 }
 
 function checkPassword(value) {
-  if (value.length > 8) {
+  if (value.length >= 8) {
     return true;
   }
   return false;
+}
+
+function checkFormValidity() {
+  let emailEntered = document.querySelector("#email").value;
+  let passValue = document.querySelector("#password").value;
+  if (checkEmail(emailEntered) && checkPassword(passValue)) {
+    document.querySelector("#successMsg").textContent = "All good to go!";
+  }
+  else{
+    document.querySelector("#successMsg").textContent = "";
+  }
 }
 
 document.querySelector("#email").addEventListener("input", () => {
@@ -20,6 +31,7 @@ document.querySelector("#email").addEventListener("input", () => {
     document.querySelector("#emailError").textContent =
       "Make sure email is more than 3 characters and has @ and a .";
   }
+  checkFormValidity();
 });
 
 document.querySelector("#password").addEventListener("input", () => {
@@ -30,5 +42,16 @@ document.querySelector("#password").addEventListener("input", () => {
     document.querySelector("#passwordError").textContent =
       "Make sure password is more than 8 characters.";
   }
+  checkFormValidity();
 });
-console.log(screen.height);
+
+document.querySelector("#submitBtn").addEventListener("click",(e)=>{
+  e.preventDefault();
+  if(confirm("Are you sure you want to submit?")){
+    alert("successful signup!");
+  }
+  else{
+    document.querySelector("#myForm").reset();
+  }
+  
+});
