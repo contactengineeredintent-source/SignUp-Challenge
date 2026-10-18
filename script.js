@@ -52,6 +52,7 @@ document.querySelector("#submitBtn").addEventListener("click",(e)=>{
   }
   else{
     document.querySelector("#myForm").reset();
+    document.querySelector("#successMsg").textContent = "";
   }
   
 });
