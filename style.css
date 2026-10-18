@@ -1,0 +1,24 @@
+body {
+  background-color: #ffe4c4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+#emailError,
+#passwordError {
+  color: #fe0000;
+}
+#container {
+  width: 50%;
+  height: 40%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgb(148, 147, 147);
+}
+@media (max-height: 1000px) {
+  #container {
+    width: 50%;
+    height: 45%;
+  }
+}
