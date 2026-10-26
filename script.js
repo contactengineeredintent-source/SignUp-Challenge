@@ -6,53 +6,52 @@ function checkEmail(value) {
 }
 
 function checkPassword(value) {
-  if (value.length >= 8) {
+  if (value.length > 8) {
     return true;
   }
   return false;
 }
 
-function checkFormValidity() {
-  let emailEntered = document.querySelector("#email").value;
-  let passValue = document.querySelector("#password").value;
+function checkFormValidity(emailEntered, passValue) {
   if (checkEmail(emailEntered) && checkPassword(passValue)) {
     document.querySelector("#successMsg").textContent = "All good to go!";
-  }
-  else{
+  } else {
     document.querySelector("#successMsg").textContent = "";
   }
 }
 
+let emailEntered = "";
+let passValue = "";
 document.querySelector("#email").addEventListener("input", () => {
-  let emailEntered = document.querySelector("#email").value;
+  emailEntered = document.querySelector("#email").value;
   if (checkEmail(emailEntered)) {
     document.querySelector("#emailError").textContent = "";
   } else {
     document.querySelector("#emailError").textContent =
       "Make sure email is more than 3 characters and has @ and a .";
   }
-  checkFormValidity();
+  checkFormValidity(emailEntered, passValue);
 });
 
 document.querySelector("#password").addEventListener("input", () => {
-  let passValue = document.querySelector("#password").value;
+  passValue = document.querySelector("#password").value;
   if (checkPassword(passValue)) {
     document.querySelector("#passwordError").textContent = "";
   } else {
     document.querySelector("#passwordError").textContent =
       "Make sure password is more than 8 characters.";
   }
-  checkFormValidity();
+  checkFormValidity(emailEntered, passValue);
 });
 
-document.querySelector("#submitBtn").addEventListener("click",(e)=>{
+document.querySelector("#submitBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  if(confirm("Are you sure you want to submit?")){
-    alert("successful signup!");
+  if (checkEmail(emailEntered) && checkPassword(passValue)) {
+    if (confirm("Are you sure you want to submit?")) {
+      alert("successful signup!");
+    } else {
+      document.querySelector("#myForm").reset();
+      document.querySelector("#successMsg").textContent = "";
+    }
   }
-  else{
-    document.querySelector("#myForm").reset();
-    document.querySelector("#successMsg").textContent = "";
-  }
-  
 });
